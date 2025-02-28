@@ -1,0 +1,36 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    margin: 0;
+}
+header{
+    padding: 1.5em;
+    background-color: antiquewhite;
+    display: flexbox;
+    justify-items: center;
+}
+main{
+    display: grid;
+    grid-template-areas: "gameSection infoSection";
+    grid-template-columns: 1fr 1fr;
+
+}
+.gameSection{
+    grid-area: gameSection;
+    background-color: aliceblue;
+    padding: 2em;
+}
+
+.infoSection{
+    grid-area: infoSection;
+    background-color: rgb(0, 160, 160);
+    padding: 0.5em;
+}
+.lives{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.lives > div{
+    padding: 0.5em;
+}
