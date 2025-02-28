@@ -4,14 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock paper siccors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
+    <header>
+        <h1>Rock Paper Siccors game</h1>
+    </header>
+    
+    <main>
+        <div class="gameSection">
+        <p>Press the buttons and see if you win!</p>
         <button onclick="playerTurn('rock')">Rock</button>
         <button onclick="playerTurn('paper')">Paper</button>
         <button onclick="playerTurn('siccors')">Siccors</button>
-        <button onclick="computerTurn()">Test computer</button>
     </div>
+
+    <div class="infoSection">
+        <p>Get the computer player's lives to zero to win. <br> Or lose to the computer</p>
+        <div class="lives">
+            <div class="playerLivesContainer">
+                <h3>Player Lives</h3>
+                <p id="playerLives"></p>
+            </div>
+            <div class="computerLivesContainer">
+                <h3>Computer Lives</h3>
+                <p id="computerLives"></p>
+            </div>
+        </div>
+        
+        
+        <p id="result"></p>
+    </div>
+    </main>
+    
 
     <script src="script.js"></script>
 </body>
