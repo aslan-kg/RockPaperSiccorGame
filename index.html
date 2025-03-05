@@ -8,36 +8,55 @@
 </head>
 <body>
     <header>
-        <h1>Rock Paper Siccors game</h1>
+        <h1>Rock Paper Scissors game</h1>
     </header>
     
     <main>
         <div class="gameSection">
-        <p>Press the buttons and see if you win!</p>
-        <button onclick="playerTurn('rock')">Rock</button>
-        <button onclick="playerTurn('paper')">Paper</button>
-        <button onclick="playerTurn('siccors')">Siccors</button>
-    </div>
-
-    <div class="infoSection">
-        <p>Get the computer player's lives to zero to win. <br> Or lose to the computer</p>
-        <div class="lives">
-            <div class="playerLivesContainer">
-                <h3>Player Lives</h3>
-                <p id="playerLives"></p>
+            <div class="playerSection">
+                <h2>Press the buttons and see if you win!</h2>
+                <button onclick="playerTurn('rock')">Rock</button>
+                <button onclick="playerTurn('paper')">Paper</button>
+                <button onclick="playerTurn('siccors')">Scissors</button>
+                <p id="stopMessage"></p>
             </div>
-            <div class="computerLivesContainer">
-                <h3>Computer Lives</h3>
-                <p id="computerLives"></p>
+
+            <div class="infoSection">
+                <h1>Results</h1>
+                <div id="imageSection">
+                    <div id="playerImage"></div>
+                    <div id="computerImage"></div>
+                </div>
+                <div class="lives">
+                    <div class="playerLivesContainer">
+                        <h3>Player Lives</h3>
+                        <p id="playerLives"></p>
+                    </div>
+                    <div class="computerLivesContainer">
+                        <h3>Computer Lives</h3>
+                        <p id="computerLives"></p>
+                    </div>
+                </div>
+                
+                <p id="result"></p>
             </div>
         </div>
-        
-        
-        <p id="result"></p>
-    </div>
-    </main>
-    
 
+        <div class="instructionSection">
+            <h1>How to play</h1>
+            <ol>
+                <li>First you have to press the buttons on the left. You have Rock, Paper, and Scissor</li>
+                <li>The Section under it will display if you or the computer wins the match</li>
+                <li>if you win you take the one of the computer's 3 lives. if you lose your lives get taken</li>
+                <li>Who ever drags the others lives to 0 wins the game</li>
+                <li>So dont push your luck ladies and gentlemen!!!</li>
+            </ol>
+            
+        </div>
+        <footer>
+            Aortiz&copy;2025
+        </footer>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

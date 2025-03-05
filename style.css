@@ -1,36 +1,101 @@
 *{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 body{
     margin: 0;
 }
 header{
-    padding: 1.5em;
-    background-color: antiquewhite;
+    padding: 1em;
+    background-color: rgb(155, 207, 255);
     display: flexbox;
     justify-items: center;
 }
 main{
     display: grid;
-    grid-template-areas: "gameSection infoSection";
-    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "gameSection instructionSection"
+        "footer footer"
+    ;
+    grid-template-columns: 2fr 1fr;
 
 }
+h1{
+    text-align: center;
+}
+
 .gameSection{
     grid-area: gameSection;
-    background-color: aliceblue;
-    padding: 2em;
+    background-color: rgb(91, 169, 169);
+
+}
+
+.instructionSection{
+    grid-area: instructionSection;
+    padding: 1.5em;
+    background-color: rgb(223, 246, 255);
+}
+
+.playerSection{
+    padding: 1em;
+    display: flexbox;
+    justify-items: center;
+    background-color: rgb(173, 173, 173);
+}
+button{
+    font-size: 1.4em;
+    border-radius: 0.5em;
+    padding: 0.2em;
+    border: 2px blue solid;
+}
+button:hover{
+    padding: 0.3em;
+    border: 2px gold solid;
 }
 
 .infoSection{
-    grid-area: infoSection;
-    background-color: rgb(0, 160, 160);
     padding: 0.5em;
 }
+#imageSection{
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5em;
+    min-height: 14em;
+    margin: 0.7em;
+    background-color: rgb(121, 199, 255);
+
+}
+.imageName{
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+#result{
+    font-size: 1.5em;
+    text-align: center;
+}
 .lives{
+    margin: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 .lives > div{
     padding: 0.5em;
+    text-align: center;
 }
+
+footer{
+    background-color: gray;
+    color: white;
+    padding: 2.5em;
+    grid-area: footer;
+}
+
+@media only screen and (max-width: 610px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+    #imageSection{
+        display: block;
+    }
+
+  }

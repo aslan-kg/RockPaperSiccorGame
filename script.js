@@ -1,11 +1,26 @@
 //global variables
+//option chosen by player or computer
 let playerOption = "";
 let computerOption = "";
-
+//the image related to the options choosen
+let playerImage = "";
+let computerImage = "";
+//both players have 2 lives at the start of the game
 let playerLives = 3;
 let computerLives = 3;
-
+//RoudOutput will start off as blank until the result of the round is declared
 let roundOutput = '';
+//will display a message to the users if they try pressing after the match ended
+let stopMessage = `You cant play anymore`;
+let displayStop = '';
+
+
+
+const selectionArray = [
+    {name:'rock', imageLink:'/RockPaperSiccorGame/images/rock.png', alt:'rock'},
+    {name: 'paper', imageLink:'/RockPaperSiccorGame/images/paper.png', alt:'paper'},
+    {name: 'siccors', imageLink:'/RockPaperSiccorGame/images/siccors.png', alt:'siccors'}];
+
 
 //displays lives at the start of the game
 let playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
@@ -16,81 +31,108 @@ function playerTurn(input){
     console.log(playerLives);
     console.log(computerLives);
 
-    if(playerLives > 0){
+    
+    
+
+    
+//if the player and computer has lives more than zero contine playing the game
+    if(playerLives > 0 && computerLives > 0){
         console.log("valid")
-        playerOption = input;
-        console.log(playerOption);
-        computerTurn();
-        return;
-    }else{
+        //converts the players input into a option variable using the option avalable in SelectionArray
+        if(input === 'rock'){
+            playerOption = selectionArray[0].name;
+            playerImage = selectionArray[0].imageLink;
+            console.log(playerOption);
+            computerTurn();
+        }else if(input === 'paper'){
+            playerOption = selectionArray[1].name;
+            playerImage = selectionArray[1].imageLink;
+            console.log(playerOption);
+            computerTurn();
+        }else if(input === 'siccors'){
+            playerOption = selectionArray[2].name;
+            playerImage = selectionArray[2].imageLink;
+            console.log(playerOption);
+            computerTurn();
+        } 
+}else{//prevents the player from playing the game after the game has concluded
         console.log("you cannot play")
+        playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
+        ComputerLivesDisplay = document.getElementById('computerLives').innerHTML = computerLives;
+        displayStop = document.getElementById('stopMessage').innerHTML = stopMessage;
+
     }
 }
-//player lives
 
 
 
 //The system will choose its own input by random
 function computerTurn(){
     console.log("its the computers turn now");
-//Fist creates a random number to then match it to any of the option below
-    const computerSelection = ['rock', 'paper', 'siccors'];
-    let randomSelect = Math.floor(Math.random() * computerSelection.length);
+//Fist creates a random number to then match it to any of options in the ComputerOption array
+    
+    let randomSelect = Math.floor(Math.random() * selectionArray.length);
     console.log(randomSelect);
-    computerOption = computerSelection[randomSelect];
-    console.log(computerOption);
+    computerOption = selectionArray[randomSelect].name;
+    computerImage = selectionArray[randomSelect].imageLink;
+    console.log(computerImage);
+    console.log("The computer selected", computerOption);
     calculateWinner();
 }
-//detects the winner
+//detects the winner of a round acording to the posible choices
 function calculateWinner(){
-    console.log(playerOption);
-    console.log(computerOption);
-    console.log("And the winner is...")
-//if playerOption or ComputerOption are in the these posibilities.
-//The displayResults function will be called with sending the Winner and the Option used as parameters
-    if(playerOption === 'rock'){
-        if(computerOption === 'siccors')
+
+
+//The displayResults function will be called along with sending who is the Winner and what option they used as two parameters
+
+/*Index guide
+Rock =[0]
+Paper =[1]
+Scissors=[2]
+*/
+    if(playerOption === selectionArray[0].name){
+        if(computerOption === selectionArray[2].name)
         {
             console.log("Player Wins"); 
             displayResults('Player', 'Rock');
     
             computerLives--;
-        }else if(computerOption === 'paper'){
+        }else if(computerOption === selectionArray[1].name){
             console.log("Player Loses");
             playerLives--;
-            displayResults('Computer', 'Paper');
+            displayResults('Computer','Paper');
 
-        }else if(computerOption === 'rock'){
+        }else if(computerOption === selectionArray[0].name){
             displayResults('null','tie');
         }
     }
     
-    else if(playerOption === 'siccors'){
-        if(computerOption === 'paper'){
+    else if(playerOption === selectionArray[2].name){
+        if(computerOption === selectionArray[1].name){
             console.log("Player Wins");
             computerLives--;
             displayResults('Player', 'siccors');
-        }else if(computerOption === "rock"){
+        }else if(computerOption === selectionArray[0].name){
             console.log("Player Loses");
             playerLives--;
             displayResults('Computer', 'rock');
-        }else if(computerOption === 'siccors'){
+        }else if(computerOption === selectionArray[2].name){
             console.log("Tie");
             displayResults('null', 'tie');
         }
     }
 
-    else if(playerOption === 'paper'){
-        if(computerOption === 'rock'){
+    else if(playerOption === selectionArray[1].name){
+        if(computerOption === computerOption[0].name){
             console.log("Player Wins");
             computerLives--;
             displayResults('Player', 'paper')
-        }else if(computerOption === 'siccors'){
+        }else if(computerOption === selectionArray[2].name){
             console.log("Player Loses");
             playerLives--;
             displayResults('Computer', 'siccors');
 
-        }else if(computerOption === 'paper'){
+        }else if(computerOption === selectionArray[1].name){
             console.log("Tie");
             displayResults('null', 'tie');
         }
@@ -104,6 +146,15 @@ function displayResults(roundWinner, roundResult){
     //displays the Player chances they have left in the game. It is lost when the player loses a round
     playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
     ComputerLivesDisplay = document.getElementById('computerLives').innerHTML = computerLives;
+
+    imageOutput = `<p class="imageName">${playerOption}</p>
+    <img src="${playerImage}" alt="rock" width="200" height="200">`;
+
+    imageDisplay = document.getElementById('playerImage').innerHTML = imageOutput;
+
+    imageOutput = `<p class="imageName">${computerOption}</p>
+    <img src="${computerImage}" alt="rock" width="200" height="200">`;
+    imageDisplay = document.getElementById('computerImage').innerHTML = imageOutput;
     
     
     /* console.log(roundWinner);
@@ -116,6 +167,14 @@ function displayResults(roundWinner, roundResult){
         if(roundResult != 'tie'){
             roundOutput = `And the winner is ${roundWinner} using ${roundResult}`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
+
+            
+            //image display
+            /* let playerImage = document.createElement('img');
+            playerImage.setAttribute('src', '/images/rock.png');
+           // let imageLocation = document.querySelector('imageSection');
+            appendChild(playerImage); */
+
         }else if(roundOutput = 'tie'){
             roundOutput = `Its a Tie!!!`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
