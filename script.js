@@ -1,3 +1,4 @@
+//This file has been edited
 //global variables
 //option chosen by player or computer
 let playerOption = "";
