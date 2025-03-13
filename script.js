@@ -97,14 +97,14 @@ Paper =[1]
 Scissors=[2]
 */
     if(playerOption === selectionArray[0].name){
-        if(computerOption === selectionArray[1].name)
+        if(computerOption === selectionArray[2].name)
         {
             console.log("Player Wins");
             computerLives--;
             displayResults('Player', 'Rock');
     
             computerLives--;
-        }else if(computerOption === selectionArray[2].name){
+        }else if(computerOption === selectionArray[1].name){
             console.log("Player Loses");
             playerLives--;
             displayResults('Computer','Paper');
