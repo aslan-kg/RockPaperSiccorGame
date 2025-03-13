@@ -34,6 +34,8 @@ function playerTurn(input){
     playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
     ComputerLivesDisplay = document.getElementById('computerLives').innerHTML = computerLives;
 
+    displayResults();
+
     
     
 
@@ -94,13 +96,14 @@ Paper =[1]
 Scissors=[2]
 */
     if(playerOption === selectionArray[0].name){
-        if(computerOption === selectionArray[2].name)
+        if(computerOption === selectionArray[1].name)
         {
-            console.log("Player Wins"); 
+            console.log("Player Wins");
+            computerLives--;
             displayResults('Player', 'Rock');
     
             computerLives--;
-        }else if(computerOption === selectionArray[1].name){
+        }else if(computerOption === selectionArray[2].name){
             console.log("Player Loses");
             playerLives--;
             displayResults('Computer','Paper');
@@ -178,7 +181,11 @@ function displayResults(roundWinner, roundResult){
             roundOutput = `And the winner is ${roundWinner} using ${roundResult}`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
 
-            
+            //prevents a bug when one of the player hit zero but entered the if statment as one. 
+            //When player loses lives the function will restart so it will display the winner and loses that are triggered in the else around line 209
+            if(playerLives < 0 || computerLives < 0){
+                displayResults();
+            }
 
             //displayed if round ended in a tie
         }else if(roundOutput = 'tie'){
@@ -195,10 +202,26 @@ function displayResults(roundWinner, roundResult){
             <img src="/RockPaperSiccorGame/images/shrugs.png" alt="rock" width="200" height="200">`;
             imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
 
+            
 
     
         }
-    }
+    }else{
+        console.log("Some one lost")
+
+        imageOutput = `<p class="imageName">${playerOption}</p>
+        <img src="${playerImage}" alt="rock" width="200" height="200">`;
+        imageDisplay = document.getElementById('playerImage').innerHTML = imageOutput;
+
+        imageOutput = `<p class="imageName">${computerOption}</p>
+        <img src="${computerImage}" alt="rock" width="200" height="200">`;
+        imageDisplay = document.getElementById('computerImage').innerHTML = imageOutput;
+
+         //reset the tie round images in tie display to make room for the next round
+         imageOutput = '';
+         imageDisplay = document.getElementById('tieImage').innerHTML = '';
+ 
+
         //The final results displayed when on of the player loses all lived leaving the opponent as the winner.
         if(playerLives === 0){
             roundOutput = `Computer is the sole winner of this match <br> try better next time.`;
@@ -207,7 +230,9 @@ function displayResults(roundWinner, roundResult){
             imageOutput = `<p class="imageName">You lost</p>
             <img src="/RockPaperSiccorGame/images/lose.jpg" alt="rock" width="200" height="200">`;
             imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
-        }else if(computerLives === 0){
+        }
+        else if(computerLives === 0){
+            console.log("This if statment is active")
             imageOutput = `<p class="imageName">You won</p>
             <img src="/RockPaperSiccorGame/images/VictoryRoyale.png" alt="rock" width="200" height="200">`;
             imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
@@ -217,8 +242,9 @@ function displayResults(roundWinner, roundResult){
 
             
         }
-    
+    }
+        
+    //displays both lives in console
     console.log("Lives: ", playerLives);
     console.log("Lives: ", computerLives);
 }
-
