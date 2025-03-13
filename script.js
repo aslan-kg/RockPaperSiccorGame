@@ -31,6 +31,9 @@ function playerTurn(input){
     console.log(playerLives);
     console.log(computerLives);
 
+    playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
+    ComputerLivesDisplay = document.getElementById('computerLives').innerHTML = computerLives;
+
     
     
 
@@ -147,14 +150,6 @@ function displayResults(roundWinner, roundResult){
     playerLivesDisplay = document.getElementById('playerLives').innerHTML = playerLives;
     ComputerLivesDisplay = document.getElementById('computerLives').innerHTML = computerLives;
 
-    imageOutput = `<p class="imageName">${playerOption}</p>
-    <img src="${playerImage}" alt="rock" width="200" height="200">`;
-
-    imageDisplay = document.getElementById('playerImage').innerHTML = imageOutput;
-
-    imageOutput = `<p class="imageName">${computerOption}</p>
-    <img src="${computerImage}" alt="rock" width="200" height="200">`;
-    imageDisplay = document.getElementById('computerImage').innerHTML = imageOutput;
     
     
     /* console.log(roundWinner);
@@ -164,29 +159,63 @@ function displayResults(roundWinner, roundResult){
     let playerResultDisplay = ''
 //who ever wins one of the rounds are displayed
     if(playerLives > 0 && computerLives > 0){
+
+        //reset the tie round images in tie display to make room for the next round
+        imageOutput = '';
+        imageDisplay = document.getElementById('tieImage').innerHTML = '';
+
+        //displays images of the players options
+        imageOutput = `<p class="imageName">${playerOption}</p>
+        <img src="${playerImage}" alt="rock" width="200" height="200">`;
+        imageDisplay = document.getElementById('playerImage').innerHTML = imageOutput;
+
+        imageOutput = `<p class="imageName">${computerOption}</p>
+        <img src="${computerImage}" alt="rock" width="200" height="200">`;
+        imageDisplay = document.getElementById('computerImage').innerHTML = imageOutput;
+
+    
         if(roundResult != 'tie'){
             roundOutput = `And the winner is ${roundWinner} using ${roundResult}`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
 
             
-            //image display
-            /* let playerImage = document.createElement('img');
-            playerImage.setAttribute('src', '/images/rock.png');
-           // let imageLocation = document.querySelector('imageSection');
-            appendChild(playerImage); */
 
+            //displayed if round ended in a tie
         }else if(roundOutput = 'tie'){
             roundOutput = `Its a Tie!!!`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
+
+            //resets all the images from the previous rounds to make room
+            imageOutput = '';
+            imageDisplay = document.getElementById('playerImage').innerHTML = '';
+            imageDisplay = document.getElementById('computerImage').innerHTML = '';
+
+            //displays the image when round is tie
+            imageOutput = `<p class="imageName">Tied</p>
+            <img src="/RockPaperSiccorGame/images/shrugs.png" alt="rock" width="200" height="200">`;
+            imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
+
+
+    
         }
     }
         //The final results displayed when on of the player loses all lived leaving the opponent as the winner.
         if(playerLives === 0){
             roundOutput = `Computer is the sole winner of this match <br> try better next time.`;
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
+
+            imageOutput = `<p class="imageName">You lost</p>
+            <img src="/RockPaperSiccorGame/images/lose.jpg" alt="rock" width="200" height="200">`;
+            imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
         }else if(computerLives === 0){
+            imageOutput = `<p class="imageName">You won</p>
+            <img src="/RockPaperSiccorGame/images/VictoryRoyale.png" alt="rock" width="200" height="200">`;
+            imageDisplay = document.getElementById('tieImage').innerHTML = imageOutput;
+
             roundOutput = `You WIN!!!!!!! <br> you have defeated the computer's three lives.`
             playerResultDisplay = document.getElementById('result').innerHTML = roundOutput;
+
+            
         }
     
     console.log("Lives: ", playerLives);
