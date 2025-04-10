@@ -249,3 +249,7 @@ function displayResults(roundWinner, roundResult){
     console.log("Lives: ", playerLives);
     console.log("Lives: ", computerLives);
 }
+
+function resetGame(){
+    location.reload();
+}
